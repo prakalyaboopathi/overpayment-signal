@@ -1,0 +1,18 @@
+demographic_category,group_value,population_count,population_share_pct,top20_selected_count,top20_share_pct,group_selection_rate_pct,relative_selection_ratio,group_mean_risk_score,disparity_flag
+age_band,30-44,1112,26.48,5,25.0,0.4496,0.94,12.32,Balanced
+age_band,45-59,992,23.62,3,15.0,0.3024,0.64,12.58,Balanced
+age_band,60-74,874,20.81,6,30.0,0.6865,1.44,12.87,Balanced
+age_band,18-29,701,16.69,3,15.0,0.428,0.9,12.83,Balanced
+age_band,75+,521,12.4,3,15.0,0.5758,1.21,12.58,Balanced
+language_preference,English,3277,78.02,16,80.0,0.4883,1.03,12.55,Balanced
+language_preference,Spanish,510,12.14,4,20.0,0.7843,1.65,13.05,Balanced
+language_preference,Other,413,9.83,0,0.0,0.0,0.0,12.56,Underrepresented (<0.5x)
+district,Calder Central,1433,34.12,9,45.0,0.6281,1.32,12.63,Balanced
+district,Northgate,1121,26.69,2,10.0,0.1784,0.37,12.52,Balanced
+district,Weybridge,983,23.4,3,15.0,0.3052,0.64,12.11,Balanced
+district,Ash Hill,663,15.79,6,30.0,0.905,1.9,13.46,Balanced
+tenure,Social tenancy,876,20.86,1,5.0,0.1142,0.24,12.02,Balanced
+tenure,No fixed abode,855,20.36,4,20.0,0.4678,0.98,12.85,Balanced
+tenure,Private tenancy,830,19.76,6,30.0,0.7229,1.52,12.42,Balanced
+tenure,Resident with family,824,19.62,6,30.0,0.7282,1.53,13.18,Balanced
+tenure,Owner-occupier,815,19.4,3,15.0,0.3681,0.77,12.62,Balanced
