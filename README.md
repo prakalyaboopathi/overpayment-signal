@@ -152,4 +152,4 @@ After running `python -m src.cli`, the following files are produced in `outputs/
 
 ## Repository
 
-* GitHub Repository: `https://github.com/user/overpayment-signal` *(Remote repository ready for submission)*
+* GitHub Repository: `https://github.com/prakalyaboopathi/overpayment-signal`
