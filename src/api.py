@@ -36,7 +36,10 @@ if public_path.exists():
 # Shared cache for pipeline results to make API endpoints instant
 _cached_state: Dict[str, Any] = {}
 
-def run_pipeline_internal(data_dir: str = "data", output_dir: str = "outputs") -> Dict[str, Any]:
+def run_pipeline_internal(
+    data_dir: str | Path = BASE_DIR / "data",
+    output_dir: str | Path = "/tmp/outputs"
+) -> Dict[str, Any]:
     """Runs the existing Python pipeline without duplicating any scoring or validation logic."""
     cases_raw, payments_raw = load_data(data_dir=data_dir)
     cases_clean, payments_clean, validation_report = validate_and_clean_data(cases_raw, payments_raw)
