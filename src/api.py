@@ -33,6 +33,7 @@ public_path = Path(__file__).parent.parent / "public"
 if public_path.exists():
     app.mount("/app", StaticFiles(directory=str(public_path), html=True), name="static")
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 # Shared cache for pipeline results to make API endpoints instant
 _cached_state: Dict[str, Any] = {}
 
