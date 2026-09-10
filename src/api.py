@@ -33,27 +33,46 @@ public_path = Path(__file__).parent.parent / "public"
 if public_path.exists():
     app.mount("/app", StaticFiles(directory=str(public_path), html=True), name="static")
 
-BASE_DIR = Path(__file__).resolve().parent.parent
 # Shared cache for pipeline results to make API endpoints instant
 _cached_state: Dict[str, Any] = {}
 
 def run_pipeline_internal(
-    data_dir: str | Path = BASE_DIR / "data",
+    data_dir: str | Path = "data",
     output_dir: str | Path = "/tmp/outputs"
 ) -> Dict[str, Any]:
     """Runs the existing Python pipeline without duplicating any scoring or validation logic."""
+
+    data_dir = Path(__file__).resolve().parent.parent / "data"
+
     cases_raw, payments_raw = load_data(data_dir=data_dir)
-    cases_clean, payments_clean, validation_report = validate_and_clean_data(cases_raw, payments_raw)
+    cases_clean, payments_clean, validation_report = validate_and_clean_data(
+        cases_raw, payments_raw
+    )
     features_df = engineer_features(cases_clean, payments_clean)
 
     engine = ScoringEngine()
     scored_full_df, subscores_df = engine.compute_scores(features_df)
-    
-    top20_raw, top20_subscores = engine.get_ranked_worklist(scored_full_df, top_n=20)
-    top20_explained = generate_worklist_explanations(top20_raw, top20_subscores)
-    fairness_df = analyze_fairness(scored_full_df, top20_explained)
 
-    top20_file, fairness_file = save_outputs(top20_explained, fairness_df, output_dir=output_dir)
+    top20_raw, top20_subscores = engine.get_ranked_worklist(
+        scored_full_df,
+        top_n=20
+    )
+
+    top20_explained = generate_worklist_explanations(
+        top20_raw,
+        top20_subscores
+    )
+
+    fairness_df = analyze_fairness(
+        scored_full_df,
+        top20_explained
+    )
+
+    top20_file, fairness_file = save_outputs(
+        top20_explained,
+        fairness_df,
+        output_dir=output_dir
+    )
 
     state = {
         "cases_count": len(cases_clean),
@@ -65,6 +84,7 @@ def run_pipeline_internal(
         "scored_full_df": scored_full_df,
         "payments_clean": payments_clean
     }
+
     _cached_state.update(state)
     return state
 
