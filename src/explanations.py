@@ -1,5 +1,5 @@
 import pandas as pd
-from typing import List, Dict, Any
+from typing import Tuple,List, Dict, Any
 
 def generate_case_explanation(row: pd.Series, subscores_row: pd.Series) -> Tuple[str, str]:
     """
